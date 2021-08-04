@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Configuração de caractere e compatibilidade com navegador -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Titulo da pagina -->
+    <title>Imersão Dev - Aula 06</title>
+    <!-- Links -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Titulo de nivel 1 -->
+    <h1>Tabela de classificação</h1>
+    <div class="container">
+      <!-- Tabela -->
+      <table style="width: 100%">
+        <thead>
+          <tr>
+            <th>Nome:</th>
+            <th>Vitórias:</th>
+            <th>Empates:</th>
+            <th>Derrotas:</th>
+            <th>Validar pontos:</th>
+            <th>Validar empates:</th>
+            <th>Validar derrotas:</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaJogadores">
+          <tr>
+            <td>Jogador 1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="adicionarVitoria()">Vitória</button></td>
+            <td><button onclick="adicionarEmpate()">Empate</button></td>
+            <td><button onclick="adicionarDerrota()">Derrota</button></td>
+          </tr>
+          <tr>
+            <td>Jogador 2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="adicionarVitoria()">Vitória</button></td>
+            <td><button onclick="adicionarEmpate()">Empate</button></td>
+            <td><button onclick="adicionarDerrota()">Derrota</button></td>
+          </tr>
+          <tr>
+            <td>Jogador 3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="adicionarVitoria()">Vitória</button></td>
+            <td><button onclick="adicionarEmpate()">Empate</button></td>
+            <td><button onclick="adicionarDerrota()">Derrota</button></td>
+          </tr>
+          <tr>
+            <td>Jogador 4</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="adicionarVitoria()">Vitória</button></td>
+            <td><button onclick="adicionarEmpate()">Empate</button></td>
+            <td><button onclick="adicionarDerrota()">Derrota</button></td>
+          </tr>
+          <tr>
+            <td>Jogador 5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="adicionarVitoria()">Vitória</button></td>
+            <td><button onclick="adicionarEmpate()">Empate</button></td>
+            <td><button onclick="adicionarDerrota()">Derrota</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="img">
+      <img src="./img/controle-de-jogo-play-station.png" />
+    </div>
+    <script src="mod.js"></script>
+  </body>
+</html>
