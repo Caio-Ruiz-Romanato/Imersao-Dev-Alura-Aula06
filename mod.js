@@ -1,4 +1,3 @@
-//Neste caso foi criado variáveis sem nome de pessoas pois esse código pode ser usado para outros fins. 
 var jogador1 = {
     nome: "Jogador1",
     vitorias: 2,
