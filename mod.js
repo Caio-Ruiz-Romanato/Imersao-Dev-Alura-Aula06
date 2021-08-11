@@ -1,76 +1,82 @@
-/* Variaveis das cartas */
-var cartaHarry = { nome: "Harry Potter", atributos: { ataque: 500, defesa: 850, magia: 1000 } }
-var cartaRick = { nome: "Rick Sanchez", atributos: { ataque: 1000, defesa: 1000, magia: 850 } }
-var cartaThomas = { nome: "Thomas Shelby", atributos: { ataque: 250, defesa: 600, magia: 0 } }
-var cartaLucifer = { nome: "Lúcifer Morningstar", atributos: { ataque: 1205, defesa: 999, magia: 999 } }
-var cartaFin = { nome: "Fin", atributos: { ataque: 110, defesa: 360, magia: 350 } }
-var cartaJack = { nome: "Jack Cachorro", atributos: { ataque: 500, defesa: 850, magia: 600 } }
-var cartaVoldemort = { nome: "Lord Voldemort", atributos: { ataque: 500, defesa: 600, magia: 999 } }
-var cartaResplendor = { nome: "Sr. Resplendor", atributos: { ataque: 1000, defesa: 900, magia: 500 } }
-var cartaMEGA = { nome: "MEGA MAGIA", atributos: { ataque: 2000, defesa: 2000, magia: 0 } }
+//Todas variaveis com nomes dos jogadores
+var caio = { nome: "Caio", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
+var karina = { nome: "Karina", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
+var isadora = { nome: "Isadora", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
+var pixu = { nome: "Pixu", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
+var neiudo = { nome: "Neiudo", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
+var micuim = { nome: "Micuim", vitorias: 2, empates: 2, derrotas: 1, pontos: 0 }
 
+/*Podemos calcular os pontos de todos os jogadores executando a função e 
+atribuir os pontos no campo (pontos) de cada objeto*/
+caio.pontos = calculaPontos(caio)
+karina.pontos = calculaPontos(karina)
+isadora.pontos = calculaPontos(isadora)
+pixu.pontos = calculaPontos(pixu)
+neiudo.pontos = calculaPontos(neiudo)
+micuim.pontos = calculaPontos(micuim)
 
-var cartaMaquina
-var cartaJogador
-var cartas = [cartaHarry, cartaRick, cartaThomas, cartaLucifer, cartaFin, cartaJack, cartaVoldemort, cartaResplendor, cartaMEGA]
-// índice       0           1           2           3               4          5           6            7                 8
-
-/* Formato da array */
-
-// carta[0] cartaHarry
-// carta[1] cartaRick
-// carta[2] cartaThomas
-// carta[3] cartaLucifer
-// carta[4] cartaFin
-// carta[5] cartaJack
-// carta[6] cartaVoldemort
-// carta[7] cartaResplendor
-// carta[8] cartaMEGA
-
-/* Criando a função para sortear as cartas */
-function sortearCarta() {
-    var numeroCartaMaquina = parseInt(Math.random() * 3)
-    cartaMaquina = cartas[numeroCartaMaquina]
-
-    var numeroCartaJogador = parseInt(Math.random() * 3)
-    while (numeroCartaJogador == numeroCartaMaquina) {
-        numeroCartaJogador = parseInt(Math.random() * 3)
-    }
-    cartaJogador = cartas[numeroCartaJogador]
-    console.log(cartaJogador)
-
-    document.getElementById('btnSortear').disabled = true
-    document.getElementById('btnJogar').disabled = false
-    exibirOpcoes()
+/*Dentro da function, vamos criar uma variável chamada pontos,
+atribuir o número de vitórias do jogador multiplicado por 3 e somar com número de empates*/
+function calculaPontos(jogador) {
+    var pontos = (jogador.vitorias * 3) + jogador.empates
+    /*Toda vez que essa função for executada, 
+    queremos que ela devolva os pontos já calculados, por isso vamos adicionar o return pontos*/
+    return pontos
 }
 
-function exibirOpcoes() {
-    var opcoes = document.getElementById('opcoes')
-    var opcoesTexto = ""
-    for (var atributo in cartaJogador.atributos) {
-        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>" + atributo
+//Vamos criar uma lista com todos os jogadores para ser exibidos de uma vez só
+var jogadores = [caio, karina, isadora, pixu, neiudo, micuim]
+
+exibirJogadoresNaTela(jogadores)
+
+//Vamos criar uma função que exibe todos os jogadores passando nossa lista de jogadores
+function exibirJogadoresNaTela(jogadores) {
+    /*Como queremos exibir os objetos que estão no JS na pagina HTML, podemos usar o innerHTML, 
+    vamos criar uma variável chamada html e juntar infos de vitória, empate, derrota e pontos*/
+    var html = ""
+    //Podemos criar um (for) -para exibir todos os jogadores na lista
+    for (var i = 0; i < jogadores.length; i++) {
+        /*Vamos varrer nossa lista incluíndo uma <tr> indicando uma linha e uma 
+        <td> para cada atributo do jogador*/
+        html += "<tr><td>" + jogadores[i].nome + "</td>"
+        html += "<td>" + jogadores[i].vitorias + "</td>"
+        html += "<td>" + jogadores[i].empates + "</td>"
+        html += "<td>" + jogadores[i].derrotas + "</td>"
+        html += "<td>" + jogadores[i].pontos + "</td>"
+        /*Vamos adicionar na função que exibe os jogadores na tela os botões e 
+        o concatenando o índice de cada jogador*/
+        html += "<td><button onClick='adicionarVitoria(" + i + ")'>Vitória</button></td>"
+        html += "<td><button onClick='adicionarEmpate(" + i + ")'>Empate</button></td>"
+        html += "<td><button onClick='adicionarDerrota(" + i + ")'>Derrota</button></td></tr>"
     }
-    opcoes.innerHTML = opcoesTexto
+    /*Para posicionar cada jogador de forma correta, 
+    criamos um elemento no HTML com o ID chamado tabelajogador, para exibir as infos da tabela, 
+    vamos recuperar usando o elemento do HTML document.getElementById e 
+    atribuir com o innerHTML a variável html que criamos*/
+    var tabelaJogadores = document.getElementById('tabelaJogadores')
+    tabelaJogadores.innerHTML = html
 }
 
-function obtemAtributoSelecionado() {
-    var radioAtributo = document.getElementsByName('atributo')
-    for (var i = 0; i < radioAtributo.length; i++) {
-        if (radioAtributo[i].checked) {
-            return radioAtributo[i].value
-        }
-    }
+/*Vamos criar agora as funções adicionar vitoria, empate, derrota e 
+pontos com o mesmo nome dos botões*/
+function adicionarVitoria(i) {
+    /*Agora que sabemos o jogador, vamos somar 1 na quantidade de vitórias, 
+    adicionar o ponto no jogador e chamar a junção para exibir o jogador na tela*/
+    var jogador = jogadores[i]
+    jogador.vitorias++
+    jogador.pontos = calculaPontos(jogador)
+    exibirJogadoresNaTela(jogadores)
 }
 
-function jogar() {
-    var atributoSelecionado = obtemAtributoSelecionado()
+function adicionarEmpate(i) {
+    var jogador = jogadores[i]
+    jogador.empates++
+    jogador.pontos = calculaPontos(jogador)
+    exibirJogadoresNaTela(jogadores)
+}
 
-    if (cartaJogador.atributos[atributoSelecionado] > cartaMaquina.atributos[atributoSelecionado]) {
-        alert('Venceu! Sua carta é maior')
-    } else if (cartaJogador.atributos[atributoSelecionado] < cartaMaquina.atributos[atributoSelecionado]) {
-        alert('Perdeu. Carta da máquina é maior')
-    } else {
-        alert('Empatou!')
-    }
-    console.log(cartaMaquina)
+function adicionarDerrota(i) {
+    var jogador = jogadores[i]
+    jogador.derrotas++
+    exibirJogadoresNaTela(jogadores)
 }
